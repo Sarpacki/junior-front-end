@@ -10,6 +10,44 @@ import check from "./img/check.svg";
 import lock from "./img/lock.svg";
 import { useState } from "react";
 
+const tasks = [
+  {
+    id: "application-setup",
+    name: "Application Setup",
+    locked: false,
+  },
+  {
+    id: "static-books-list",
+    name: "Static Books List",
+    locked: false,
+  },
+  {
+    id: "administration-panel",
+    name: "Administration Panel",
+    locked: false,
+  },
+  {
+    id: "connect-admin-with-frontend",
+    name: "Connect Admin with Frontend",
+    locked: false,
+  },
+  {
+    id: "book-review-feature",
+    name: "Book Review Feature",
+    locked: true,
+  },
+];
+
+const Task = ({ onClick, id, imgSrc }) => (
+  <Link to={`/${id}`} onClick={onClick}>
+    <div className="task-title">
+      <img src={imgSrc} alt="arrow-icon" />
+
+      <h3 className="task-name">{id.split("-").join(" ")}</h3>
+    </div>
+  </Link>
+);
+
 const TasksWrapper = () => {
   const [visited, setVisited] = useState([]);
 
@@ -23,69 +61,17 @@ const TasksWrapper = () => {
         <div className="your-tasks">
           <h2>YOUR TASKS</h2>
           <div className="all-tasks">
-            <Link
-              to="/application-setup"
-              onClick={() => onClick("application-setup")}
-            >
-              <div className="task-title">
-                <img
-                  src={visited.includes("application-setup") ? arrow : check}
-                  alt="arrow-icon"
+            {tasks.map((task) => {
+              const changingIcon = visited.includes(task.id) ? arrow : check;
+              return (
+                <Task
+                  key={task.id}
+                  id={task.id}
+                  imgSrc={task.locked ? lock : changingIcon}
+                  onClick={() => onClick(task.id)}
                 />
-
-                <h3 className="status-complited">Application Setup</h3>
-              </div>
-            </Link>
-            <Link
-              to="/static-books-list"
-              onClick={() => onClick("static-books-list")}
-            >
-              <div className="task-title">
-                <img
-                  src={visited.includes("static-books-list") ? arrow : check}
-                  alt="arrow-icon"
-                />
-
-                <h3>Static Books List</h3>
-              </div>
-            </Link>
-            <Link
-              to="/administration-panel"
-              onClick={() => onClick("administration-panel")}
-            >
-              <div className="task-title">
-                <img
-                  src={visited.includes("administration-panel") ? arrow : check}
-                  alt="arrow-icon"
-                />
-
-                <h3>Administration Panel</h3>
-              </div>
-            </Link>
-            <Link
-              to="/connect-admin-with-frontend"
-              onClick={() => onClick("connect-admin-with-frontend")}
-            >
-              <div className="task-title">
-                <img
-                  src={
-                    visited.includes("connect-admin-with-frontend")
-                      ? arrow
-                      : check
-                  }
-                  alt="arrow-icon"
-                />
-
-                <h3>Connect Admin with Frontend</h3>
-              </div>
-            </Link>
-            <Link to="/book-review-feature">
-              <div className="task-title">
-                <img src={lock} alt="arrow-icon" />
-
-                <h3>Book Review Feature</h3>
-              </div>
-            </Link>
+              );
+            })}
           </div>
         </div>
         <div className="business-context">

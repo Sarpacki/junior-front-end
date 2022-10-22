@@ -210,3 +210,20 @@ body {
   border-radius: 50%;
   border: 2px solid #f4f5f7;
 }
+
+.task-title {
+  text-transform: capitalize;
+}
+
+.title-new {
+  color: #0165ff;
+  font-weight: bold;
+}
+
+.single-short-content-active {
+  box-shadow: 2px 2px 9px #c5c5c5;
+}
+
+.single-short-content-inactive {
+  background-color: transparent;
+}

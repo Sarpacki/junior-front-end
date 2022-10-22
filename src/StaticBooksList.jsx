@@ -58,9 +58,11 @@ const StaticBooksList = () => {
           ))}
         </div>
         <div className="full-contents">
-          {data.map((item) => (
-            <FullContent key={item.id} {...item} />
-          ))}
+          {data
+            .filter((item) => item.status === "active")
+            .map((item) => (
+              <FullContent key={item.id} {...item} />
+            ))}
         </div>
       </div>
     </>

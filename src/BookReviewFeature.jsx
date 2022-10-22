@@ -1,9 +1,5 @@
 const BookReviewFeature = () => {
-  return (
-    <>
-      <h3 className="blocked-content">This content is bloked.</h3>
-    </>
-  );
+  <h3 className="blocked-content">This content is bloked.</h3>;
 };
 
 export default BookReviewFeature;
